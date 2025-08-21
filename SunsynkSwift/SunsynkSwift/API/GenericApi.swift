@@ -31,11 +31,15 @@ enum ApiError: Error {
 
 protocol GenericApi {
     var session: URLSession { get }
-    func fetch<T: Codable>(type: T.Type, withRequest request: URLRequest, withDecoder decoder: JSONDecoder) async throws -> T
+    func fetch<T: Codable>(type: T.Type,
+                           withRequest request: URLRequest,
+                           withDecoder decoder: JSONDecoder) async throws -> T
 }
 
 extension GenericApi {
-    func fetch<T: Codable>(type: T.Type, withRequest request: URLRequest, withDecoder decoder: JSONDecoder = JSONDecoder()) async throws -> T {
+    func fetch<T: Codable>(type: T.Type,
+                           withRequest request: URLRequest,
+                           withDecoder decoder: JSONDecoder = JSONDecoder()) async throws -> T {
         let (data, response) = try await session.data(for: request)
         guard let httpResponse = response as? HTTPURLResponse else {
             throw ApiError.requestFailed(description: "Invalid response")

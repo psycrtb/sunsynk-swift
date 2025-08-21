@@ -58,9 +58,9 @@ final public class Sunsynk: SunsynkApi {
         }
     }
 
-    func plants(token: String) async throws -> PlantsDTO {
+    func plants(token: String, page: Int = 1, limit: Int = 10) async throws -> PlantsDTO {
         do {
-            guard var request = request(path: SPath.plants, queryItems: ["page": "1", "limit": "10"]) else {
+            guard var request = request(path: SPath.plants, queryItems: ["page": "\(page)", "limit": "\(limit)"]) else {
                 throw ApiError.requestFailed(description: "Couldn't create request")
             }
 
@@ -72,7 +72,132 @@ final public class Sunsynk: SunsynkApi {
         }
     }
 
-    func request(path: String, queryItems: [String: String] = [:]) -> URLRequest?  {
+    func user(token: String, language: String) async throws -> UserDTO {
+        do {
+            guard var request = request(path: SPath.user, queryItems: ["lan": language]) else {
+                throw ApiError.requestFailed(description: "Couldn't create request")
+            }
+
+            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+            return try await fetch(type: UserDTO.self, withRequest: request, withDecoder: decoder())
+        } catch {
+            throw error
+        }
+    }
+
+    func flow(token: String, plantId: Int, date: Date) async throws -> FlowDTO {
+        do {
+            let path = SPath.flow.replacingOccurrences(of: "___", with: "\(plantId)")
+
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            let formattedDate = formatter.string(from: date)
+            guard var request = request(path: path, queryItems: ["date": formattedDate]) else {
+                throw ApiError.requestFailed(description: "Couldn't create request")
+            }
+
+            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+            return try await fetch(type: FlowDTO.self, withRequest: request, withDecoder: decoder())
+        } catch {
+            throw error
+        }
+    }
+
+    func use(token: String, plantId: Int) async throws -> UseDTO {
+        do {
+            let path = SPath.use.replacingOccurrences(of: "___", with: "\(plantId)")
+
+            guard var request = request(path: path) else {
+                throw ApiError.requestFailed(description: "Couldn't create request")
+            }
+
+            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+            return try await fetch(type: UseDTO.self, withRequest: request, withDecoder: decoder())
+        } catch {
+            throw error
+        }
+    }
+
+    func day(token: String, language: String, plantId: Int, date: Date) async throws -> DayDTO {
+        do {
+            let path = SPath.day.replacingOccurrences(of: "___", with: "\(plantId)")
+
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM-dd"
+            let formattedDate = formatter.string(from: date)
+            guard var request = request(path: path, queryItems: ["lan": language, "date": formattedDate]) else {
+                throw ApiError.requestFailed(description: "Couldn't create request")
+            }
+
+            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+            return try await fetch(type: DayDTO.self, withRequest: request, withDecoder: decoder())
+        } catch {
+            throw error
+        }
+    }
+
+    func month(token: String, language: String, plantId: Int, date: Date) async throws -> MonthDTO {
+        do {
+            let path = SPath.month.replacingOccurrences(of: "___", with: "\(plantId)")
+
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy-MM"
+            let formattedDate = formatter.string(from: date)
+            guard var request = request(path: path, queryItems: ["lan": language, "date": formattedDate]) else {
+                throw ApiError.requestFailed(description: "Couldn't create request")
+            }
+
+            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+            return try await fetch(type: MonthDTO.self, withRequest: request, withDecoder: decoder())
+        } catch {
+            throw error
+        }
+    }
+
+    func year(token: String, language: String, plantId: Int, date: Date) async throws -> YearDTO {
+        do {
+            let path = SPath.year.replacingOccurrences(of: "___", with: "\(plantId)")
+
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy"
+            let formattedDate = formatter.string(from: date)
+            guard var request = request(path: path, queryItems: ["lan": language, "date": formattedDate]) else {
+                throw ApiError.requestFailed(description: "Couldn't create request")
+            }
+
+            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+            return try await fetch(type: YearDTO.self, withRequest: request, withDecoder: decoder())
+        } catch {
+            throw error
+        }
+    }
+
+    func total(token: String, language: String, plantId: Int, date: Date) async throws -> TotalDTO {
+        do {
+            let path = SPath.total.replacingOccurrences(of: "___", with: "\(plantId)")
+
+            let formatter = DateFormatter()
+            formatter.dateFormat = "yyyy"
+            let formattedDate = formatter.string(from: date)
+            guard var request = request(path: path, queryItems: ["lan": language, "date": formattedDate]) else {
+                throw ApiError.requestFailed(description: "Couldn't create request")
+            }
+
+            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+            return try await fetch(type: TotalDTO.self, withRequest: request, withDecoder: decoder())
+        } catch {
+            throw error
+        }
+    }
+
+    internal func request(path: String, queryItems: [String: String] = [:]) -> URLRequest? {
         var components = URLComponents()
         components.scheme = scheme
         components.host = host
