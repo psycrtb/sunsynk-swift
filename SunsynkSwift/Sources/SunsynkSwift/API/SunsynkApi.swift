@@ -22,7 +22,7 @@ struct SPath {
 }
 
 protocol SunsynkApi: GenericApi {
-    
+
     /// Gets an Auth token so you can make further calls to the API. Token is valid for a week
     /// - Parameters:
     ///   - client_id: Unsure what this is
@@ -36,7 +36,7 @@ protocol SunsynkApi: GenericApi {
                source: String,
                username: String,
                password: String) async throws -> TokenResponseDTO
-    
+
     /// Gets the data now for the specific plant
     /// - Parameters:
     ///   - token: Auth token
@@ -44,7 +44,7 @@ protocol SunsynkApi: GenericApi {
     /// - Returns: Realtime breakdown of the power production
     func realtime(token: String,
                   plantId: Int) async throws -> RealtimeDTO
-    
+
     /// Gets a list of power plants that may be needed for further calls
     /// - Parameters:
     ///   - token: Auth token
@@ -62,7 +62,7 @@ protocol SunsynkApi: GenericApi {
     /// - Returns: User information
     func user(token: String,
               language: String) async throws -> UserDTO
-    
+
     /// Gets information on how the power is flowing within the system
     /// - Parameters:
     ///   - token: Auth token
@@ -72,7 +72,7 @@ protocol SunsynkApi: GenericApi {
     func flow(token: String,
               plantId: Int,
               date: Date) async throws -> FlowDTO
-    
+
     /// Gets current use
     /// - Parameters:
     ///   - token: Auth token
@@ -80,7 +80,7 @@ protocol SunsynkApi: GenericApi {
     /// - Returns: Use information
     func use(token: String,
              plantId: Int) async throws -> UseDTO
-    
+
     /// Gets use today per every few minutes
     /// - Parameters:
     ///   - token: Auth token
@@ -92,7 +92,7 @@ protocol SunsynkApi: GenericApi {
              language: String,
              plantId: Int,
              date: Date) async throws -> DayDTO
-    
+
     /// Gets use over the last month, with data on each day
     /// - Parameters:
     ///   - token: Auth token
@@ -104,7 +104,7 @@ protocol SunsynkApi: GenericApi {
                language: String,
                plantId: Int,
                date: Date) async throws -> MonthDTO
-    
+
     /// Gets use over the last year, with data on each month
     /// - Parameters:
     ///   - token: Auth token
@@ -116,7 +116,7 @@ protocol SunsynkApi: GenericApi {
               language: String,
               plantId: Int,
               date: Date) async throws -> YearDTO
-    
+
     /// Gets use over the lifetime of the installation
     /// - Parameters:
     ///   - token: Auth token
@@ -128,7 +128,7 @@ protocol SunsynkApi: GenericApi {
                language: String,
                plantId: Int,
                date: Date) async throws -> TotalDTO
-    
+
     /// Gets the inverter use now with more details on the setup
     /// - Parameters:
     ///   - token: Auth token
