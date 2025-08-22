@@ -15,6 +15,7 @@ enum ApiError: Error {
     case jsonParsingFailure
     case failedSerialization
     case noInternet
+    case unknownError(description: String)
 
     var customDescription: String {
         switch self {
@@ -25,6 +26,7 @@ enum ApiError: Error {
         case .jsonParsingFailure: return "JSON Parsing Failure"
         case .failedSerialization: return "Serialization failed."
         case .noInternet: return "No internet connection"
+        case let .unknownError(description): return "Unknown Error: \(description)"
         }
     }
 }

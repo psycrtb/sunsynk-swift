@@ -146,4 +146,17 @@ struct SunsynkSwiftTests {
             #expect(Bool(false))
         }
     }
+
+    @Test func invertersRequest() async throws {
+        do {
+            let token = try await Sunsynk().token(username: username, password: password)
+            let accessToken = token.data.access_token
+            let inverters = try await Sunsynk().inverters(token: accessToken, plantId: plantId)
+            print("inverters \(inverters)")
+            #expect(Bool(true))
+        } catch {
+            print("Failed! \(error)")
+            #expect(Bool(false))
+        }
+    }
 }

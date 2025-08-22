@@ -18,7 +18,7 @@ final public class Sunsynk: SunsynkApi {
                grant_type: String = "password",
                source: String = "sunsynk",
                username: String,
-               password: String) async throws -> TokenResponseDTO {
+               password: String) async throws(ApiError) -> TokenResponseDTO {
         do {
             let tokenRequest = TokenRequestDTO(client_id: client_id,
                                                grant_type: grant_type,
@@ -37,12 +37,15 @@ final public class Sunsynk: SunsynkApi {
             request.httpBody = data
 
             return try await fetch(type: TokenResponseDTO.self, withRequest: request, withDecoder: decoder())
-        } catch {
+        } catch let error as ApiError {
             throw error
+        } catch {
+            throw .unknownError(description: "Unknown error occured")
         }
     }
 
-    func realtime(token: String, plantId: Int) async throws -> RealtimeDTO {
+    func realtime(token: String,
+                  plantId: Int) async throws(ApiError) -> RealtimeDTO {
         do {
             let path = SPath.realtime.replacingOccurrences(of: "___", with: "\(plantId)")
 
@@ -53,12 +56,16 @@ final public class Sunsynk: SunsynkApi {
             request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
             return try await fetch(type: RealtimeDTO.self, withRequest: request, withDecoder: decoder())
-        } catch {
+        } catch let error as ApiError {
             throw error
+        } catch {
+            throw .unknownError(description: "Unknown error occured")
         }
     }
 
-    func plants(token: String, page: Int = 1, limit: Int = 10) async throws -> PlantsDTO {
+    func plants(token: String,
+                page: Int = 1,
+                limit: Int = 10) async throws(ApiError) -> PlantsDTO {
         do {
             guard var request = request(path: SPath.plants, queryItems: ["page": "\(page)", "limit": "\(limit)"]) else {
                 throw ApiError.requestFailed(description: "Couldn't create request")
@@ -67,12 +74,15 @@ final public class Sunsynk: SunsynkApi {
             request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
             return try await fetch(type: PlantsDTO.self, withRequest: request, withDecoder: decoder())
-        } catch {
+        } catch let error as ApiError {
             throw error
+        } catch {
+            throw .unknownError(description: "Unknown error occured")
         }
     }
 
-    func user(token: String, language: String) async throws -> UserDTO {
+    func user(token: String,
+              language: String) async throws(ApiError) -> UserDTO {
         do {
             guard var request = request(path: SPath.user, queryItems: ["lan": language]) else {
                 throw ApiError.requestFailed(description: "Couldn't create request")
@@ -81,12 +91,16 @@ final public class Sunsynk: SunsynkApi {
             request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
             return try await fetch(type: UserDTO.self, withRequest: request, withDecoder: decoder())
-        } catch {
+        } catch let error as ApiError {
             throw error
+        } catch {
+            throw .unknownError(description: "Unknown error occured")
         }
     }
 
-    func flow(token: String, plantId: Int, date: Date) async throws -> FlowDTO {
+    func flow(token: String,
+              plantId: Int,
+              date: Date) async throws(ApiError) -> FlowDTO {
         do {
             let path = SPath.flow.replacingOccurrences(of: "___", with: "\(plantId)")
 
@@ -100,12 +114,15 @@ final public class Sunsynk: SunsynkApi {
             request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
             return try await fetch(type: FlowDTO.self, withRequest: request, withDecoder: decoder())
-        } catch {
+        } catch let error as ApiError {
             throw error
+        } catch {
+            throw .unknownError(description: "Unknown error occured")
         }
     }
 
-    func use(token: String, plantId: Int) async throws -> UseDTO {
+    func use(token: String,
+             plantId: Int) async throws(ApiError) -> UseDTO {
         do {
             let path = SPath.use.replacingOccurrences(of: "___", with: "\(plantId)")
 
@@ -116,12 +133,17 @@ final public class Sunsynk: SunsynkApi {
             request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
             return try await fetch(type: UseDTO.self, withRequest: request, withDecoder: decoder())
-        } catch {
+        } catch let error as ApiError {
             throw error
+        } catch {
+            throw .unknownError(description: "Unknown error occured")
         }
     }
 
-    func day(token: String, language: String, plantId: Int, date: Date) async throws -> DayDTO {
+    func day(token: String,
+             language: String,
+             plantId: Int,
+             date: Date) async throws(ApiError) -> DayDTO {
         do {
             let path = SPath.day.replacingOccurrences(of: "___", with: "\(plantId)")
 
@@ -135,12 +157,17 @@ final public class Sunsynk: SunsynkApi {
             request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
             return try await fetch(type: DayDTO.self, withRequest: request, withDecoder: decoder())
-        } catch {
+        } catch let error as ApiError {
             throw error
+        } catch {
+            throw .unknownError(description: "Unknown error occured")
         }
     }
 
-    func month(token: String, language: String, plantId: Int, date: Date) async throws -> MonthDTO {
+    func month(token: String,
+               language: String,
+               plantId: Int,
+               date: Date) async throws(ApiError) -> MonthDTO {
         do {
             let path = SPath.month.replacingOccurrences(of: "___", with: "\(plantId)")
 
@@ -154,12 +181,17 @@ final public class Sunsynk: SunsynkApi {
             request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
             return try await fetch(type: MonthDTO.self, withRequest: request, withDecoder: decoder())
-        } catch {
+        } catch let error as ApiError {
             throw error
+        } catch {
+            throw .unknownError(description: "Unknown error occured")
         }
     }
 
-    func year(token: String, language: String, plantId: Int, date: Date) async throws -> YearDTO {
+    func year(token: String,
+              language: String,
+              plantId: Int,
+              date: Date) async throws(ApiError) -> YearDTO {
         do {
             let path = SPath.year.replacingOccurrences(of: "___", with: "\(plantId)")
 
@@ -173,12 +205,17 @@ final public class Sunsynk: SunsynkApi {
             request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
             return try await fetch(type: YearDTO.self, withRequest: request, withDecoder: decoder())
-        } catch {
+        } catch let error as ApiError {
             throw error
+        } catch {
+            throw .unknownError(description: "Unknown error occured")
         }
     }
 
-    func total(token: String, language: String, plantId: Int, date: Date) async throws -> TotalDTO {
+    func total(token: String,
+               language: String,
+               plantId: Int,
+               date: Date) async throws(ApiError) -> TotalDTO {
         do {
             let path = SPath.total.replacingOccurrences(of: "___", with: "\(plantId)")
 
@@ -192,8 +229,37 @@ final public class Sunsynk: SunsynkApi {
             request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
 
             return try await fetch(type: TotalDTO.self, withRequest: request, withDecoder: decoder())
-        } catch {
+        } catch let error as ApiError {
             throw error
+        } catch {
+            throw .unknownError(description: "Unknown error occured")
+        }
+    }
+
+    func inverters(token: String,
+                   plantId: Int,
+                   page: Int = 1,
+                   limit: Int = 10,
+                   type: Int = -2,
+                   status: Int = -1) async throws(ApiError) -> InvertersDTO {
+        do {
+            let path = SPath.inverters.replacingOccurrences(of: "___", with: "\(plantId)")
+
+            guard var request = request(path: path, queryItems: ["page": "\(page)",
+                                                                 "limit": "\(limit)",
+                                                                 "id": "\(plantId)",
+                                                                 "type": "\(type)",
+                                                                 "status": "\(status)"]) else {
+                throw ApiError.requestFailed(description: "Couldn't create request")
+            }
+
+            request.addValue("Bearer \(token)", forHTTPHeaderField: "Authorization")
+
+            return try await fetch(type: InvertersDTO.self, withRequest: request, withDecoder: decoder())
+        } catch let error as ApiError {
+            throw error
+        } catch {
+            throw .unknownError(description: "Unknown error occured")
         }
     }
 
