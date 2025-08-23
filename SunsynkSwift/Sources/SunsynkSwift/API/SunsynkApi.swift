@@ -21,7 +21,7 @@ struct SPath {
     static let inverters = "/api/v1/plant/___/inverters"
 }
 
-protocol SunsynkApi: GenericApi {
+public protocol SunsynkApi: GenericApi {
 
     /// Gets an Auth token so you can make further calls to the API. Token is valid for a week
     /// - Parameters:

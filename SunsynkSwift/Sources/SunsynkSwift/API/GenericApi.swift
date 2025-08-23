@@ -7,7 +7,7 @@
 
 import Foundation
 
-enum ApiError: Error {
+public enum ApiError: Error {
     case requestFailed(description: String)
     case invalidData
     case responseUnsuccessful(description: String)
@@ -31,7 +31,7 @@ enum ApiError: Error {
     }
 }
 
-protocol GenericApi {
+public protocol GenericApi {
     var session: URLSession { get }
     func fetch<T: Codable>(type: T.Type,
                            withRequest request: URLRequest,
@@ -39,9 +39,9 @@ protocol GenericApi {
 }
 
 extension GenericApi {
-    func fetch<T: Codable>(type: T.Type,
-                           withRequest request: URLRequest,
-                           withDecoder decoder: JSONDecoder = JSONDecoder()) async throws -> T {
+    public func fetch<T: Codable>(type: T.Type,
+                                  withRequest request: URLRequest,
+                                  withDecoder decoder: JSONDecoder = JSONDecoder()) async throws -> T {
         let (data, response) = try await session.data(for: request)
         guard let httpResponse = response as? HTTPURLResponse else {
             throw ApiError.requestFailed(description: "Invalid response")

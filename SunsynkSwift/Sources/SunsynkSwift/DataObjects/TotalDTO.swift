@@ -7,24 +7,24 @@
 
 import Foundation
 
-struct TotalDTO: Codable {
+public struct TotalDTO: Codable {
     let code: Int
     let msg: String
     let success: Bool
-    let data: TotalDataDTO
+    let data: TotalDataDTO?
 }
 
-struct TotalDataDTO: Codable {
-    let infos: [TotalInfoDTO]
+public struct TotalDataDTO: Codable {
+    let infos: [TotalInfoDTO] = []
 }
 
-struct TotalInfoDTO: Codable {
-    let unit: String
-    let label: String
-    let records: [TotalInfoRecordDTO]
+public struct TotalInfoDTO: Codable {
+    let unit: String?
+    let label: String?
+    let records: [TotalInfoRecordDTO] = []
 }
 
-struct TotalInfoRecordDTO: Codable {
-    let time: String
-    let value: String
+public struct TotalInfoRecordDTO: Codable {
+    let time: String?
+    let value: String?
 }

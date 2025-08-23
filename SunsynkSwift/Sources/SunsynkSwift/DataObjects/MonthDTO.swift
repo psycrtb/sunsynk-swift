@@ -7,24 +7,24 @@
 
 import Foundation
 
-struct MonthDTO: Codable {
+public struct MonthDTO: Codable {
     let code: Int
     let msg: String
     let success: Bool
-    let data: MonthDataDTO
+    let data: MonthDataDTO?
 }
 
-struct MonthDataDTO: Codable {
-    let infos: [MonthInfoDTO]
+public struct MonthDataDTO: Codable {
+    let infos: [MonthInfoDTO] = []
 }
 
-struct MonthInfoDTO: Codable {
-    let unit: String
-    let label: String
-    let records: [MonthInfoRecordDTO]
+public struct MonthInfoDTO: Codable {
+    let unit: String?
+    let label: String?
+    let records: [MonthInfoRecordDTO] = []
 }
 
-struct MonthInfoRecordDTO: Codable {
-    let time: String
-    let value: String
+public struct MonthInfoRecordDTO: Codable {
+    let time: String?
+    let value: String?
 }

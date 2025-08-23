@@ -5,16 +5,16 @@
 //  Created by Tim B on 20/08/2025.
 //
 
-struct UseDTO: Codable {
+public struct UseDTO: Codable {
     let code: Int
     let msg: String
-    let data: UseDataDTO
     let success: Bool
+    let data: UseDataDTO?
 }
 
-struct UseDataDTO: Codable {
-    let load: Float
-    let pv: Float
-    let batteryCharge: Float
-    let gridSell: Float
+public struct UseDataDTO: Codable {
+    let load: Float?
+    let pv: Float?
+    let batteryCharge: Float?
+    let gridSell: Float?
 }
