@@ -8,50 +8,50 @@
 import Foundation
 
 public struct InvertersDTO: Codable {
-    let code: Int
-    let msg: String
-    let success: Bool
-    let data: InvertersDataDTO?
+    public let code: Int
+    public let msg: String
+    public let success: Bool
+    public let data: InvertersDataDTO?
 }
 
 public struct InvertersDataDTO: Codable {
-    let pageSize: Int?
-    let pageNumber: Int?
-    let total: Int?
-    let infos: [InverterDataDTO] = []
+    public let pageSize: Int?
+    public let pageNumber: Int?
+    public let total: Int?
+    public let infos: [InverterDataDTO] = []
 }
 
 public struct InverterDataDTO: Codable {
-    let id: Int?
-    let sn: String?
-    let alias: String?
-    let gsn: String?
-    let status: Int?
-    let type: Int?
-    let commTypeName: String?
-    let custCode: Int?
-    let pac: Int?
-    let opened: Int?
-    let sunsynkEquip: Bool?
-    let protocolIdentifier: String?
-    let equipType: Int?
-    let version: VersionDTO?
-    let etoday: Float?
-    let etotal: Float?
-    let updateAt: String? // Date later?
-    let plant: InverterPlantDataDTO?
+    public let id: Int?
+    public let sn: String?
+    public let alias: String?
+    public let gsn: String?
+    public let status: Int?
+    public let type: Int?
+    public let commTypeName: String?
+    public let custCode: Int?
+    public let pac: Int?
+    public let opened: Int?
+    public let sunsynkEquip: Bool?
+    public let protocolIdentifier: String?
+    public let equipType: Int?
+    public let version: VersionDTO?
+    public let etoday: Float?
+    public let etotal: Float?
+    public let updateAt: String? // Date later?
+    public let plant: InverterPlantDataDTO?
 }
 
 public struct VersionDTO: Codable {
-    let masterVer: String?
-    let softVer: String?
-    let hardVer: String?
-    let hmiVer: String?
-    let bmsVer: String?
+    public let masterVer: String?
+    public let softVer: String?
+    public let hardVer: String?
+    public let hmiVer: String?
+    public let bmsVer: String?
 }
 
 public struct InverterPlantDataDTO: Codable {
-    let id: Int?
-    let name: String?
-    let type: Int?
+    public let id: Int?
+    public let name: String?
+    public let type: Int?
 }

@@ -8,32 +8,32 @@
 import Foundation
 
 public struct PlantsDTO: Codable {
-    let code: Int
-    let msg: String
-    let success: Bool
-    let data: PlantsDataDTO?
+    public let code: Int
+    public let msg: String
+    public let success: Bool
+    public let data: PlantsDataDTO?
 }
 
 public struct PlantsDataDTO: Codable {
-    let pageSize: Int?
-    let pageNumber: Int?
-    let total: Int?
-    let infos: [PlantDataDTO] = []
+    public let pageSize: Int?
+    public let pageNumber: Int?
+    public let total: Int?
+    public let infos: [PlantDataDTO]
 }
 
 public struct PlantDataDTO: Codable {
-    let id: Int?
-    let name: String?
-    let thumbUrl: String?
-    let status: Int?
-    let address: String?
-    let pac: Int?
-    let efficiency: Float?
-    let etoday: Float?
-    let etotal: Float?
-    let updateAt: Date?
-//    let createAt: Date
-    let type: Int?
-    let masterId: Int?
+    public let id: Int?
+    public let name: String?
+    public let thumbUrl: String?
+    public let status: Int?
+    public let address: String?
+    public let pac: Int?
+    public let efficiency: Float?
+    public let etoday: Float?
+    public let etotal: Float?
+    public let updateAt: Date?
+//    public let createAt: Date
+    public let type: Int?
+    public let masterId: Int?
     // No more else has been added.
 }

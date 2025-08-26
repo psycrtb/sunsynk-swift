@@ -8,50 +8,50 @@
 import Foundation
 
 public struct FlowDTO: Codable {
-    let code: Int
-    let msg: String
-    let success: Bool
-    let data: FlowDataDTO?
+    public let code: Int
+    public let msg: String
+    public let success: Bool
+    public let data: FlowDataDTO?
 }
 
 public struct FlowDataDTO: Codable {
-    let custCode: Int?
-    let protocolIdentifier: String?
-    let meterCode: Int?
-    let pvPower: Float?
-    let battPower: Float?
-    let battPower2: Float?
-    let gridOrMeterPower: Float?
-    let loadOrEpsPower: Float?
-    let genPower: Float?
-    let minPower: Float?
-    let soc: Float?
-    let smartLoadPower: Float?
-    let upsLoadPower: Float?
-    let homeLoadPower: Float?
-    let chargePilePower: Float?
-    let pvTo: Bool?
-    let toLoad: Bool?
-    let toSmartLoad: Bool?
-    let toUpsLoad: Bool?
-    let toHomeLoad: Bool?
-    let toGrid: Bool?
-    let toBat: Bool?
-    let gridTo: Bool?
-    let genTo: Bool?
-    let minTo: Bool?
-    let toChargePile: Bool?
-    let existsGen: Bool?
-    let existsMin: Bool?
-    let existsGrid: Bool?
-    let genOn: Bool?
-    let microOn: Bool?
-    let existsMeter: Bool?
-    let bmsCommFaultFlag: Bool?
-    let existsThreeLoad: Bool?
-    let existsSmartLoad: Bool?
-    let existsChargePile: Bool?
-    let pv: Int?
-    let existThinkPower: Bool?
-    let time: String?
+    public let custCode: Int?
+    public let protocolIdentifier: String?
+    public let meterCode: Int?
+    public let pvPower: Float?
+    public let battPower: Float?
+    public let battPower2: Float?
+    public let gridOrMeterPower: Float?
+    public let loadOrEpsPower: Float?
+    public let genPower: Float?
+    public let minPower: Float?
+    public let soc: Float?
+    public let smartLoadPower: Float?
+    public let upsLoadPower: Float?
+    public let homeLoadPower: Float?
+    public let chargePilePower: Float?
+    public let pvTo: Bool?
+    public let toLoad: Bool?
+    public let toSmartLoad: Bool?
+    public let toUpsLoad: Bool?
+    public let toHomeLoad: Bool?
+    public let toGrid: Bool?
+    public let toBat: Bool?
+    public let gridTo: Bool?
+    public let genTo: Bool?
+    public let minTo: Bool?
+    public let toChargePile: Bool?
+    public let existsGen: Bool?
+    public let existsMin: Bool?
+    public let existsGrid: Bool?
+    public let genOn: Bool?
+    public let microOn: Bool?
+    public let existsMeter: Bool?
+    public let bmsCommFaultFlag: Bool?
+    public let existsThreeLoad: Bool?
+    public let existsSmartLoad: Bool?
+    public let existsChargePile: Bool?
+    public let pv: Int?
+    public let existThinkPower: Bool?
+    public let time: String?
 }

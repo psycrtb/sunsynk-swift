@@ -6,16 +6,16 @@
 //
 
 public struct UserDTO: Codable {
-    let code: Int
-    let msg: String
-    let success: Bool
-    let data: UserDataDTO?
+    public let code: Int
+    public let msg: String
+    public let success: Bool
+    public let data: UserDataDTO?
 }
 
 public struct UserDataDTO: Codable {
-    let id: Int?
-    let nickname: String?
-    let avatar: String?
-    let gender: Int?
-    let tempUnit: String?
+    public let id: Int?
+    public let nickname: String?
+    public let avatar: String?
+    public let gender: Int?
+    public let tempUnit: String?
 }

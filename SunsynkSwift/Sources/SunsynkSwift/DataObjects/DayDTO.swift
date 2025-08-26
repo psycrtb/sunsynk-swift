@@ -8,23 +8,23 @@
 import Foundation
 
 public struct DayDTO: Codable {
-    let code: Int
-    let msg: String
-    let success: Bool
-    let data: DayDataDTO?
+    public let code: Int
+    public let msg: String
+    public let success: Bool
+    public let data: DayDataDTO?
 }
 
 public struct DayDataDTO: Codable {
-    let infos: [DayInfoDTO] = []
+    public let infos: [DayInfoDTO] = []
 }
 
 public struct DayInfoDTO: Codable {
-    let unit: String?
-    let label: String?
-    let records: [DayInfoRecordDTO] = []
+    public let unit: String?
+    public let label: String?
+    public let records: [DayInfoRecordDTO] = []
 }
 
 public struct DayInfoRecordDTO: Codable {
-    let time: String?
-    let value: String?
+    public let time: String?
+    public let value: String?
 }

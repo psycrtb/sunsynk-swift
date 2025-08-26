@@ -6,15 +6,15 @@
 //
 
 public struct UseDTO: Codable {
-    let code: Int
-    let msg: String
-    let success: Bool
-    let data: UseDataDTO?
+    public let code: Int
+    public let msg: String
+    public let success: Bool
+    public let data: UseDataDTO?
 }
 
 public struct UseDataDTO: Codable {
-    let load: Float?
-    let pv: Float?
-    let batteryCharge: Float?
-    let gridSell: Float?
+    public let load: Float?
+    public let pv: Float?
+    public let batteryCharge: Float?
+    public let gridSell: Float?
 }

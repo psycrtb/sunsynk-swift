@@ -8,27 +8,27 @@
 import Foundation
 
 public struct RealtimeDTO: Codable {
-    let code: Int
-    let msg: String
-    let success: Bool
-    let data: DataDTO?
+    public let code: Int
+    public let msg: String
+    public let success: Bool
+    public let data: DataDTO?
 }
 
 public struct DataDTO: Codable {
-    let pac: Int?
-    let etoday: Float?
-    let emonth: Float?
-    let eyear: Float?
-    let etotal: Float?
-    let income: Float?
-    let efficiency: Float?
-    let updateAt: Date?
-    let currency: CurrencyDTO?
-    let totalPower: Float?
+    public let pac: Int?
+    public let etoday: Float?
+    public let emonth: Float?
+    public let eyear: Float?
+    public let etotal: Float?
+    public let income: Float?
+    public let efficiency: Float?
+    public let updateAt: Date?
+    public let currency: CurrencyDTO?
+    public let totalPower: Float?
 }
 
 public struct CurrencyDTO: Codable {
-    let id: Int?
-    let code: String?
-    let text: String?
+    public let id: Int?
+    public let code: String?
+    public let text: String?
 }
