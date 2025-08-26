@@ -14,16 +14,16 @@ public struct TokenRequestDTO: Codable {
 }
 
 public struct TokenResponseDTO: Codable {
-    let code: Int
-    let msg: String
-    let success: Bool
-    let data: TokenAccessDTO
+    public let code: Int
+    public let msg: String
+    public let success: Bool
+    public let data: TokenAccessDTO
 }
 
 public struct TokenAccessDTO: Codable {
-    let access_token: String
-    let refresh_token: String
-    let scope: String
-    let token_type: String
-    let expires_in: Int
+    public let access_token: String
+    public let refresh_token: String
+    public let scope: String
+    public let token_type: String
+    public let expires_in: Int
 }

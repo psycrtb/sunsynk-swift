@@ -7,7 +7,7 @@
 
 import Foundation
 
-final public class Sunsynk: SunsynkApi {
+final public class Sunsynk: SunsynkApi, Sendable {
 
     private let scheme = "https"
     private let host = "api.sunsynk.net"
