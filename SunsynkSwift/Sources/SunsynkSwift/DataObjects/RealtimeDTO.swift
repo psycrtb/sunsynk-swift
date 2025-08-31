@@ -11,10 +11,10 @@ public struct RealtimeDTO: Codable {
     public let code: Int
     public let msg: String
     public let success: Bool
-    public let data: DataDTO?
+    public let data: RealtimeDataDTO?
 }
 
-public struct DataDTO: Codable {
+public struct RealtimeDataDTO: Codable {
     public let pac: Int?
     public let etoday: Float?
     public let emonth: Float?

@@ -17,7 +17,7 @@ public struct TokenResponseDTO: Codable {
     public let code: Int
     public let msg: String
     public let success: Bool
-    public let data: TokenAccessDTO
+    public let data: TokenAccessDTO?
 }
 
 public struct TokenAccessDTO: Codable {

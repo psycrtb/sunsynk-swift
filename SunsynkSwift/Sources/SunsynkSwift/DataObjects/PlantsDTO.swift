@@ -36,4 +36,19 @@ public struct PlantDataDTO: Codable {
     public let type: Int?
     public let masterId: Int?
     // No more else has been added.
+
+    public init(id: Int?, name: String?, thumbUrl: String?, status: Int?, address: String?, pac: Int?, efficiency: Float?, etoday: Float?, etotal: Float?, updateAt: Date?, type: Int?, masterId: Int?) {
+        self.id = id
+        self.name = name
+        self.thumbUrl = thumbUrl
+        self.status = status
+        self.address = address
+        self.pac = pac
+        self.efficiency = efficiency
+        self.etoday = etoday
+        self.etotal = etotal
+        self.updateAt = updateAt
+        self.type = type
+        self.masterId = masterId
+    }
 }
